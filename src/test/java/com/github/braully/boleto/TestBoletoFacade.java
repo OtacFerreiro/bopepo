@@ -23,7 +23,7 @@ import org.junit.Test;
  */
 public class TestBoletoFacade {
 
-    @Test
+    /*@Test
     public void testBoletoSimples() {
         BoletoFacade boletoFacade = new BoletoFacade();
         boletoFacade.banco("001").agencia("1234").conta("1234-1");
@@ -32,5 +32,5 @@ public class TestBoletoFacade {
         boletoFacade.numeroDocumento("12345").nossoNumero("12345678901").valor(100.23).dataVencimento("01/01/2019");
 
 //        org.jrimum.bopepo.view.BoletoViewer.create(boletoFacade).getPdfAsFile("/home/braully/teste.pdf");
-    }
+    }*/
 }

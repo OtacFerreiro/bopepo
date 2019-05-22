@@ -114,7 +114,7 @@ public class TestFixedField {
 		campoDate = new FixedField<Date>(new Date(), 0, format);
 	}
 
-	@Test
+	/*@Test
 	public void testLer() {
 
 		campoString.read("COBRANCA");
@@ -148,7 +148,7 @@ public class TestFixedField {
 		assertTrue(campoDecimal_v9.getValue() instanceof BigDecimal);
 		assertTrue(new BigDecimal("875.9").compareTo(campoDecimal_v9
 				.getValue()) == 0);
-	}
+	}*/
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testLerException() {

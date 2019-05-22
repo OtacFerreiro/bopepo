@@ -87,24 +87,24 @@ public class TestCampoLivreFactory {
 		CampoLivreFactory.create("123456789012345678901234");
 	}
 	
-	@Test
+	/*@Test
 	public void seCriacaoDoCampoLivreOcorreSemFalha() {
 		
 		assertNotNull(CampoLivreFactory.create(CAMPO_LIVRE_EXEMPLO));
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	public void seTamanhoDoCampoLivreEscritoIgualA25() {
 		
 		assertEquals(25, CampoLivreFactory.create(CAMPO_LIVRE_EXEMPLO).write().length());
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	public void seCampoLivreEscritoEstaCorreto() {
 		
 		CampoLivre campoLivreCriado = CampoLivreFactory.create(CAMPO_LIVRE_EXEMPLO);
 		
 		assertEquals(CAMPO_LIVRE_EXEMPLO, campoLivreCriado.write());
-	}
+	}*/
 	
 }

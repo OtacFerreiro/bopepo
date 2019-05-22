@@ -39,8 +39,6 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
-import org.jrimum.texgit.Texgit;
-import org.jrimum.texgit.TexgitException;
 import org.jrimum.utilix.ClassLoaders;
 import org.xml.sax.SAXException;
 
