@@ -70,7 +70,6 @@ import org.jrimum.utilix.Objects;
  * @version 0.2.1-inc
  *
  */
-@SuppressWarnings("serial")
 public class Filler<G> implements org.jrimum.texgit.IFiller {
 
     /**

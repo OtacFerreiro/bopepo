@@ -148,6 +148,26 @@ class CLBradesco extends AbstractCLBradesco {
 	private static final FixedField<Integer> CONSTANT_FIELD = new FixedField<Integer>(CONSTANT_VALUE, CONSTANT_LENGTH);
 	
 	/**
+	 * Constante para nomear FIELD da agencia.
+	 */
+	private static final String FIELD_AGENCIA = "Agencia";
+	
+	/**
+	 * Constante para nomear FIELD da carteira
+	 */
+	private static final String FIELD_CARTEIRA = "Carteira";
+	
+	/**
+	 * Constante para nomear FIELD do nosso numero
+	 */
+	private static final String FIELD_NOSSO_NUMERO = "NossoNumero";
+	
+	/**
+	 * Constante para nomear FIELD da conta
+	 */
+	private static final String FIELD_NUMERO_CONTA = "Conta";
+	
+	/**
 	 * Cria um campo livre instanciando o número de fields ({@code FIELDS_LENGTH}) deste campo.
 	 * 
 	 * @since 0.2
@@ -186,10 +206,10 @@ class CLBradesco extends AbstractCLBradesco {
 	@Override
 	protected void addFields(Titulo titulo) {
 		
-		this.add(new FixedField<Integer>(titulo.getContaBancaria().getAgencia().getCodigo(), AGENCIA_LENGTH, Fillers.ZERO_LEFT));
-		this.add(new FixedField<Integer>(titulo.getContaBancaria().getCarteira().getCodigo(), CARTEIRA_LENGTH, Fillers.ZERO_LEFT));
-		this.add(new FixedField<String>(titulo.getNossoNumero(), NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
-		this.add(new FixedField<Integer>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), CONTA_LENGTH, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Integer>(FIELD_AGENCIA, titulo.getContaBancaria().getAgencia().getCodigo(), AGENCIA_LENGTH, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Integer>(FIELD_CARTEIRA, titulo.getContaBancaria().getCarteira().getCodigo(), CARTEIRA_LENGTH, Fillers.ZERO_LEFT));
+		this.add(new FixedField<String>(FIELD_NOSSO_NUMERO, titulo.getNossoNumero(), NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Integer>(FIELD_NUMERO_CONTA, titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), CONTA_LENGTH, Fillers.ZERO_LEFT));
 		this.add(CONSTANT_FIELD);
 	}
 }

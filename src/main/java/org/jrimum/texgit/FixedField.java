@@ -50,14 +50,14 @@ public class FixedField<G> extends Field<G> implements IFixedField<G> {
      * campo.
      * </p>
      */
-    private Integer length;
+    /*private Integer length;*/
 
     /**
      * <p>
      * Preenchedor do valor utilizado na hora da escrita.
      * </p>
      */
-    private IFiller filler;
+    /*private IFiller filler;*/
 
     /**
      * <p>
@@ -168,8 +168,8 @@ public class FixedField<G> extends Field<G> implements IFixedField<G> {
 
     private String fill(String str) {
 
-        if (isNotNull(filler)) {
-            str = filler.fill(str, length);
+        if (isNotNull(getFiller())) {
+            str = getFiller().fill(str, getLength());
         }
 
         return str;
@@ -186,13 +186,13 @@ public class FixedField<G> extends Field<G> implements IFixedField<G> {
 
     public Integer getFixedLength() {
 
-        return this.length;
+        return getLength();
     }
 
     public void setFixedLength(Integer length) {
 
         if (isNotNull(length) && length.intValue() > 0) {
-            this.length = length;
+            setLength(length);
         } else {
             throw new IllegalArgumentException(format("Comprimento inválido [%s]!", length));
         }
@@ -201,7 +201,7 @@ public class FixedField<G> extends Field<G> implements IFixedField<G> {
 
     public void setFiller(IFiller filler) {
         if (isNotNull(filler)) {
-            this.filler = filler;
+            super.setFiller(filler);
         } else {
             throw new IllegalArgumentException(format("Preenchedor inválido [%s]!", filler));
         }
@@ -220,9 +220,9 @@ public class FixedField<G> extends Field<G> implements IFixedField<G> {
         return format(
                 "%s FixedField [length=%s, instantLength=%s, filler=%s, truncate=%s]",
                 super.toString(),
-                Objects.whenNull(this.length, EMPTY),
+                Objects.whenNull(getLength(), EMPTY),
                 Objects.whenNull(this.instantLength, EMPTY),
-                Objects.whenNull(this.filler, EMPTY),
+                Objects.whenNull(getFiller(), EMPTY),
                 Objects.whenNull(this.truncate, EMPTY));
     }
 

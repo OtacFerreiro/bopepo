@@ -82,7 +82,7 @@ public class Field<G> implements org.jrimum.texgit.IField<G>, TextStream {
     /**
      * Preenchedor do value utilizado na hora da escrita.
      */
-    private Filler<?> filler;
+    private IFiller filler;
 
     /**
      * <p>
@@ -159,6 +159,7 @@ public class Field<G> implements org.jrimum.texgit.IField<G>, TextStream {
 
     public void read(String str) {
         Objects.checkNotNull(str, "String inválida [null]!");
+        
         if (str.length() != length) {
             throw new IllegalArgumentException("O tamanho da String [ "
                     + str + " ] é incompatível com o especificado [ " + length + " ]!");
@@ -168,15 +169,20 @@ public class Field<G> implements org.jrimum.texgit.IField<G>, TextStream {
             if (this.value instanceof TextStream) {
                 TextStream reader = (TextStream) this.value;
                 reader.read(str);
+                
             } else if (this.value instanceof BigDecimal) {
                 readDecimalField(str);
+                
             } else if (this.value instanceof Date) {
                 readDateField(str);
+                
             } else if (this.value instanceof Character) {
                 readCharacter(str);
+                
             } else {
                 readStringOrNumericField(str);
             }
+            
         } catch (Exception e) {
             throw new IllegalStateException(format("Falha na leitura do campo! %s", toString()), e);
         }
@@ -252,35 +258,44 @@ public class Field<G> implements org.jrimum.texgit.IField<G>, TextStream {
         if (length != null && isNotNull(filler)) {
             str = filler.fill(str, length);
         }
+        
         return str;
     }
 
     public String write() {
         try {
             String str = null;
+            
             if (value instanceof TextStream) {
                 TextStream its = (TextStream) value;
                 str = its.write();
+                
             } else if (value instanceof Date) {
                 str = writeDateField();
+                
             } else if (value instanceof Number) {
                 str = writeDecimalField();
+                
             } else {
                 str = value.toString();
             }
+            
             str = fill(str);
+            
             if (length != null && str.length() != length) {
                 throw new IllegalArgumentException("O campo [ " + str
                         + " ] é incompatível com o especificado [" + length + "]!");
             }
+            
             return StringUtil.eliminateAccent(str).toUpperCase();
+            
         } catch (Exception e) {
             throw new IllegalStateException(format("Falha na escrita do campo escrita! %s", toString()), e);
         }
     }
 
     private String writeDecimalField() {
-        String ret = "" + value;
+        String ret = String.valueOf(value);
 
         if (value instanceof BigDecimal) {
             BigDecimal decimalValue = (BigDecimal) value;
@@ -374,11 +389,11 @@ public class Field<G> implements org.jrimum.texgit.IField<G>, TextStream {
         }
     }
 
-    public Filler<?> getFiller() {
+    public IFiller getFiller() {
         return filler;
     }
 
-    public void setFiller(Filler<?> filler) {
+    public void setFiller(IFiller filler) {
 
         if (isNotNull(filler)) {
             this.filler = filler;
