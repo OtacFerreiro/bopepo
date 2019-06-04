@@ -31,9 +31,9 @@ package org.jrimum.bopepo;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.jrimum.domkee.pessoa.CNPJ;
 import org.jrimum.domkee.banco.Banco;
 import org.jrimum.domkee.banco.CodigoDeCompensacaoBACEN;
+import org.jrimum.domkee.pessoa.CNPJ;
 
 /**
  * <p>
@@ -464,14 +464,29 @@ public enum BancosSuportados {
 
     public static Banco instancia(String numero) {
         Banco banco = CACHE_INSTANCE.get(numero);
+        
         if (banco == null) {
             BancosSuportados suportado = suportados.get(numero);
+           
             if (suportado != null) {
                 banco = suportado.create();
             }
+            
             CACHE_INSTANCE.put(numero, banco);
         }
         return banco;
     }
+    
+    public static BancosSuportados valueOfCodigo(String value)
+	{
+		for(BancosSuportados banco : values())
+		{
+			if(banco.getCodigoDeCompensacao().equals(value))
+			{
+				return banco;
+			}
+		}
+		return null;
+	}
 
 }
